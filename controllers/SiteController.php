@@ -125,17 +125,18 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        $data = Category::find();
+        $data  = Category::find();
+        $model = new Category();
         $dataProvider = new ActiveDataProvider([
             'query' => $data,                  // 如何来取得数据
-            'pagination' => ['pageSize'=>5],    // pagination 用于分页
+            'pagination' => ['pageSize' => 15],    // pagination 用于分页
             'sort'  => [                        // sort 用于排序
                 'defaultOrder' => [
                     'id' => SORT_DESC,          // defaultOrder 指定默认排序字段
                 ],
-                'attributes' => ['id','name','createTime'], // attribute 指定那几个字段可以用来排序
+//                'attributes' => ['id','name','createTime'], // attribute 指定那几个字段可以用来排序
             ],
         ]);
-        return $this->render('about', ['cate_data' => $dataProvider]);
+        return $this->render('about', ['cate_data' => $dataProvider, 'model' => $model]);
     }
 }
