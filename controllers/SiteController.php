@@ -139,4 +139,17 @@ class SiteController extends Controller
         ]);
         return $this->render('about', ['cate_data' => $dataProvider, 'model' => $model]);
     }
+
+    public function actionNew1()
+    {
+        return $this->render('new1');
+    }
+    public function actionNew2()
+    {
+
+    }
+    public function actionNew3()
+    {
+
+    }
 }
