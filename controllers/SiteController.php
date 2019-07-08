@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Category;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -123,6 +125,17 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $data = Category::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $data,                  // 如何来取得数据
+            'pagination' => ['pageSize'=>5],    // pagination 用于分页
+            'sort'  => [                        // sort 用于排序
+                'defaultOrder' => [
+                    'id' => SORT_DESC,          // defaultOrder 指定默认排序字段
+                ],
+                'attributes' => ['id','name','createTime'], // attribute 指定那几个字段可以用来排序
+            ],
+        ]);
+        return $this->render('about', ['cate_data' => $dataProvider]);
     }
 }

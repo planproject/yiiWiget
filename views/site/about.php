@@ -15,4 +15,20 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <code><?= __FILE__ ?></code>
+
+    <?php
+        echo \yii\grid\GridView::widget([
+            'dataProvider' => $cate_data,
+
+            'columns'=>[
+                'id',
+                'createTime:datetime:生成时间',
+                [
+                    'label'=>'会员名',
+                    'attribute'=>'name',
+                    'format'=>'text'
+                ],
+            ]
+        ]);
+    ?>
 </div>
